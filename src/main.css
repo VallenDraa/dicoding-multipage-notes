@@ -1,19 +1,4 @@
-:root {
-  --size: 4px;
-
-  --main-bg-color: #202124;
-  --secondary-bg-color: #4a4d54;
-
-  --main-text-color: #e5e7e8;
-  --secondary-text-color: #abafb5;
-  --tertiary-text-color: #808790;
-
-  --danger: #ef4444;
-  --secondary-danger: #dc2626;
-
-  --warning: #facc15;
-  --secondary-warning: #eab308;
-}
+@import "./variables.css";
 
 @font-face {
   font-family: 'Geist';
@@ -57,25 +42,26 @@ textarea::placeholder {
   font-weight: bold;
 }
 
+a {
+  font-style: normal;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:hover {
+  text-underline-offset: calc(var(--size) / 1.5);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: inherit;
+}
+
 .note-app {
   max-width: 540px;
   width: 95%;
   margin: auto;
-}
-
-.note-app__header {
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--secondary-bg-color);
-  justify-content: center;
-  margin: var(--size) calc(var(--size) * 3);
-}
-
-.note-app__header h1 {
-  margin: calc(var(--size) * 2) 0;
-  flex: 1;
-  color: var(--main-text-color);
 }
 
 .note-app__body {
@@ -175,76 +161,4 @@ textarea::placeholder {
 .notes-list__empty-message {
   text-align: center;
   color: var(--secondary-text-color);
-}
-
-.note-item {
-  border: 1px solid var(--secondary-bg-color);
-  border-radius: var(--size);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.note-item--archived {
-  --main-text-color: var(--warning);
-}
-
-.note-item__content {
-  padding: calc(var(--size) * 3);
-  flex: 1;
-}
-
-.note-item__title {
-  margin-bottom: 0;
-  color: var(--main-text-color);
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.note-item__date {
-  font-size: calc(var(--size) * 3);
-  color: var(--tertiary-text-color);
-}
-
-.note-item__body {
-  margin-top: calc(var(--size) * 2.5);
-  color: var(--secondary-text-color);
-  font-size: calc(var(--size) * 3.5);
-}
-
-.note-item__action {
-  display: flex;
-}
-
-.note-item__delete-button,
-.note-item__archive-button {
-  transition-property: color, background-color;
-  transition-duration: 200ms;
-  display: block;
-  width: 100%;
-  background-color: transparent;
-  border: 0;
-  border-top: 1px solid var(--secondary-bg-color);
-  padding: calc(var(--size) * 2) 0;
-  font-family: 'Geist';
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.note-item__delete-button {
-  border-right: 1px solid var(--secondary-bg-color);
-  color: var(--danger);
-}
-
-.note-item__archive-button {
-  color: var(--warning);
-}
-
-.note-item__archive-button:hover {
-  color: var(--secondary-warning);
-}
-
-.note-item__delete-button:hover {
-  color: var(--secondary-danger);
 }
