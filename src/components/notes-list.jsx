@@ -9,14 +9,11 @@ export class NotesList extends Component {
   constructor(props) {
     super(props);
 
-    const defaultKeyword = "";
-
     this.state = {
-      keyword: defaultKeyword,
       filteredNotes: getFilteredNotes(
         props.notes,
         props.noteState,
-        defaultKeyword,
+        props.keyword,
       ),
     };
 
@@ -24,18 +21,18 @@ export class NotesList extends Component {
   }
 
   onKeywordChange(keyword) {
-    this.setState({ keyword });
+    this.props.onSearch(keyword);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (
       prevProps.notes !== this.props.notes ||
-      prevState.keyword !== this.state.keyword
+      prevProps.keyword !== this.props.keyword
     ) {
       const newFilteredNotes = getFilteredNotes(
         this.props.notes,
         this.props.noteState,
-        this.state.keyword,
+        this.props.keyword,
       );
 
       this.setState({ filteredNotes: newFilteredNotes });
@@ -43,8 +40,8 @@ export class NotesList extends Component {
   }
 
   render() {
-    const { noteState } = this.props;
-    const { filteredNotes, keyword } = this.state;
+    const { noteState, keyword } = this.props;
+    const { filteredNotes } = this.state;
 
     return (
       <div>
@@ -73,6 +70,8 @@ export class NotesList extends Component {
 }
 
 NotesList.propTypes = {
+  keyword: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
   notes: PropTypes.arrayOf(noteValidator).isRequired,
   noteState: PropTypes.oneOf(["active", "archived"]).isRequired,
 };
