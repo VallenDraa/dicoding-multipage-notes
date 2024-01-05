@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 export const NoteSearchbar = ({ keyword, onKeywordChange }) => {
@@ -13,4 +14,9 @@ export const NoteSearchbar = ({ keyword, onKeywordChange }) => {
       onChange={handleKeywordChange}
     />
   );
+};
+
+NoteSearchbar.propTypes = {
+  keyword: PropTypes.string.isRequired,
+  onKeywordChange: PropTypes.func.isRequired,
 };

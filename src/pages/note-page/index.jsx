@@ -73,7 +73,7 @@ export function NotePage({ notes, onArchive, onDelete }) {
         <section className="note__missing-wrapper">
           <h2 className="note__missing-title">can't find note.</h2>
           <p className="note__missing-message">
-            it seems that the note you we're looking is missing!
+            it seems that the note you were looking is missing!
           </p>
           <Link to="/" className="note__back-link">
             🏠return home
