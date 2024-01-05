@@ -1,31 +1,37 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "../pages/home-page";
-import { NotFoundPage } from "../pages/not-found-page";
-import { ArchivePage } from "../pages/archive-page";
-import { NotePage } from "../pages/note-page";
-import { NewNotePage } from "../pages/new-note-page";
+import { HomePage } from "../../pages/home-page";
+import { NotFoundPage } from "../../pages/not-found-page";
+import { ArchivePage } from "../../pages/archive-page";
+import { NotePage } from "../../pages/note-page";
+import { NewNotePage } from "../../pages/new-note-page";
 import React from "react";
-import { getInitialData, saveNotes } from "../utils";
+import { getInitialData, saveNotes } from "../../utils";
+import "./layout.css";
 
-export class Routers extends React.Component {
+export class Layout extends React.Component {
   constructor() {
     super();
 
     this.state = { notes: getInitialData() };
-
-    this.onAddNote = this.onAddNote.bind(this);
-    this.onArchive = this.onArchive.bind(this);
-    this.onDelete = this.onDelete.bind(this);
   }
 
-  onAddNote(note) {
-    const newNotes = [...this.state.notes, note];
+  onAddNote = (title, body) => {
+    const newNotes = [
+      ...this.state.notes,
+      {
+        id: crypto.randomUUID(),
+        title: title || "untitled note.",
+        body,
+        createdAt: new Date().toISOString(),
+        archived: false,
+      },
+    ];
 
     this.setState({ notes: newNotes });
     saveNotes(newNotes);
-  }
+  };
 
-  onArchive(id) {
+  onArchive = id => {
     const newNotes = [...this.state.notes];
 
     newNotes.forEach((note, i) => {
@@ -36,14 +42,14 @@ export class Routers extends React.Component {
 
     this.setState({ notes: newNotes });
     saveNotes(newNotes);
-  }
+  };
 
-  onDelete(id) {
+  onDelete = id => {
     const newNotes = [...this.state.notes].filter(note => note.id !== id);
 
     this.setState({ notes: newNotes });
     saveNotes(newNotes);
-  }
+  };
 
   render() {
     return (
@@ -64,6 +70,7 @@ export class Routers extends React.Component {
                 path="/note/:id"
                 element={
                   <NotePage
+                    notes={this.state.notes}
                     onArchive={this.onArchive}
                     onDelete={this.onDelete}
                   />

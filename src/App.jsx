@@ -1,5 +1,5 @@
-import { Routers } from "./components/routers";
+import { Layout } from "./components/layout";
 
 export function App() {
-  return <Routers />;
+  return <Layout />;
 }

@@ -11,14 +11,16 @@ export function Navbar() {
         </Link>
       </h1>
 
-      <ul className="navbar__links">
-        <li className="navbar__link">
-          <Link to="/">home</Link>
-        </li>
-        <li className="navbar__link">
-          <Link to="/archive">archive</Link>
-        </li>
-      </ul>
+      <nav className="navbar__link-wrapper">
+        <ul className="navbar__links">
+          <li className="navbar__link">
+            <Link to="/">home</Link>
+          </li>
+          <li className="navbar__link">
+            <Link to="/archive">archive</Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

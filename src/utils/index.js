@@ -2,7 +2,7 @@ export const getInitialData = () => {
   const notes = localStorage.getItem("notes");
 
   if (notes === null) {
-    return [
+    const newNotes = [
       {
         id: crypto.randomUUID(),
         title: "Babel",
@@ -46,6 +46,10 @@ export const getInitialData = () => {
         archived: false,
       },
     ];
+
+    saveNotes(newNotes);
+
+    return newNotes;
   }
 
   return JSON.parse(notes);

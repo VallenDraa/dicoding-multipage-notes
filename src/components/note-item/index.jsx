@@ -11,13 +11,19 @@ export const NoteItem = ({ note }) => {
       className={`note-item ${archived ? "note-item--archived" : ""}`.trimEnd()}
     >
       <div className="note-item__content">
-        <h3 className="note-item__title">{title}</h3>
+        <h3
+          className="note-item__title"
+          dangerouslySetInnerHTML={{ __html: title }}
+        ></h3>
         <span className="note-item__date">{showFormattedDate(createdAt)}</span>
-        <p className="note-item__body">{body}</p>
+        <p
+          className="note-item__body"
+          dangerouslySetInnerHTML={{ __html: body }}
+        ></p>
       </div>
 
       <Link to={`/note/${id}`} className="note-item__details-button">
-        👀 details
+        📖 details
       </Link>
     </li>
   );

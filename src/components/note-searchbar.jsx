@@ -11,7 +11,6 @@ export const NoteSearchbar = ({ keyword, onKeywordChange }) => {
       placeholder="search notes"
       value={keyword}
       onChange={handleKeywordChange}
-      className="notes-list-header__searchbar"
     />
   );
 };

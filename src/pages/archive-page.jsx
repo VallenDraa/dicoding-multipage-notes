@@ -8,7 +8,6 @@ import { useSearchParams } from "react-router-dom";
 export function ArchivePage({ notes = [] }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  setSearchParams({});
   return (
     <>
       <Navbar />
